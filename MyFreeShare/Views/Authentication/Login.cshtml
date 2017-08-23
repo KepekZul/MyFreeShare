@@ -11,9 +11,9 @@
         <table>
             @using (Html.BeginForm())
             {
-                <tr><td>Username: <input type="text" name="username" class="form-control"/></td></tr>
-                <tr><td>Password: <input type="password" name="password" class="form-control"/></td></tr>
-                <tr><td><input class="btn btn-success" type="submit" value="Log In" /></td></tr>
+                <tr><td>Username<input type="text" name="username" class="form-control" required/></td></tr>
+                <tr><td>Password<input type="password" name="password" class="form-control" required/></td></tr>
+                <tr><td><input class="btn btn-success form-control" type="submit" value="Log In" /></td></tr>
             }
         </table>
     </div>
