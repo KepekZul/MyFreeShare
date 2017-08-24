@@ -11,18 +11,40 @@
                     <tr><td><span class="navbar-brand">@Session["username"]</span></td></tr>
                     <tr><td><span class="text-blue">Number of file uploaded</span></td></tr>
                     <tr><td><span class="text-blue">Join Date</span></td></tr>
-                    <tr><td><span class="text-blue"><a href="@Url.Action("Upload","File")">Upload New File</a></span></td></tr>
+                    <tr><td><span class="text-blue"><a href="@Url.Action("Upload","Home")">Upload New File</a></span></td></tr>
+                    <tr><td><span class="text-blue"><a href="@Url.Action("Logout","Authentication")">Log Out</a></span></td></tr>
                 </table>
             </div>
         </div>
     </div>
     <div class="col-lg-9">
-        <div class="box">
-            <div class="box-header">
-                @using (Html.BeginForm("Cari","Home"))
-                {
-                <input class="form-control" type="search" name="query" style="min-width:100%;" /><input type="submit" class="btn btn-success" value="search" />
-                }
+        <div class="row">
+            <div class="box">
+                <div class="box-header">
+                    @using (Html.BeginForm("Cari","Home"))
+                    {
+                    <input class="form-control" type="search" name="query" style="min-width:100%;" /><input type="submit" class="btn btn-success" value="search" />
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-title">
+                        Your Uploaded File
+                    </div>
+                </div>
+                <div class="box-body">
+                    <table>
+                        <thead>
+
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

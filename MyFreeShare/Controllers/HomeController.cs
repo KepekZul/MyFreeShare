@@ -11,7 +11,11 @@ namespace MyFreeShare.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            Session["username"] = "kepekzul";
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Upload()
+        {
             return View();
         }
     }

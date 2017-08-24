@@ -26,7 +26,7 @@ namespace MyFreeShare.Controllers
                     string passwordDB = dataUser.password;
                     if (data.password == passwordDB)
                     {
-                        Session["username"] = dataUser.nama;
+                        Session["username"] = dataUser.username;
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -45,6 +45,30 @@ namespace MyFreeShare.Controllers
         public ActionResult SignUp()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult SignUp(pengguna data)
+        {
+            using(var db= new MainDBContext())
+            {
+                if(!db.dataPengguna.Where(x=>x.username==data.username || x.email == data.email).Any())
+                {
+                    db.dataPengguna.Add(data);
+                    db.SaveChanges();
+                    Session["username"] = data.username;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["pesan"] = "username atau email telah terdaftar";
+                    return View();
+                }
+            }
+        }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "Authentication");
         }
     }
 }
