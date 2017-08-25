@@ -247,6 +247,8 @@
     <Content Include="Views\Shared\user_layout.cshtml" />
     <Content Include="Views\Authentication\SignUp.cshtml" />
     <Content Include="Views\Home\Upload.cshtml" />
+    <Content Include="Views\File\Cari.cshtml" />
+    <Content Include="Views\Shared\searchbar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -256,7 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
-    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -19,6 +19,7 @@ namespace MyFreeShare.Models
         public string nama_file { get; set; }
         public string pengguna { get; set; }
         public Nullable<int> terunduh { get; set; }
+        public Nullable<System.DateTime> waktu_terupload { get; set; }
     
         public virtual pengguna pengguna1 { get; set; }
     }

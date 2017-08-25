@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8cc0e1996eac4398ac534cf5077b350c" Name="Diagram1">
-        <EntityTypeShape EntityType="DatabaseModel.File" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.pengguna" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="DatabaseModel.FK__File__pengguna__37A5467C" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DatabaseModel.File" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="DatabaseModel.pengguna" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="DatabaseModel.FK__File__pengguna__37A5467C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

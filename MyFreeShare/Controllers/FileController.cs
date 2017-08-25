@@ -23,25 +23,34 @@ namespace MyFreeShare.Controllers
             var path = Path.Combine(Server.MapPath("~/App_Data/Uploads"), filename);
             file.SaveAs(path);
             var db = new MainDBContext();
-            db.dataFile.Add(new Models.File { nama_file = filename, file_path = path, pengguna = Session["username"].ToString() });
+            db.dataFile.Add(new Models.File { nama_file = filename, file_path = path, pengguna = Session["username"].ToString(), waktu_terupload=DateTime.Now, terunduh=0 });
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         public ActionResult Cari(FormCollection param)
         {
-            string[] query = param["query"].Split(' ');
-            List<string> resultFile = new List<string>();
-            using(var db =new MainDBContext())
+            using (var db = new MainDBContext())
             {
-                foreach(var q in query)
+                List<Models.File> ResultFile = new List<Models.File>();
+                string[] query = param["query"].Split(' ');
+                foreach (var q in query)
                 {
-                    var resultQuery = db.dataFile.Where(x => x.nama_file.Contains(q)).ToList();
-                    foreach(var r in resultQuery)
-                    {
-                        resultFile.AddRange(r.)
-                    }
+                    var resQ = db.dataFile.Where(x => x.nama_file.Contains(q)).ToList();
+                    ResultFile.AddRange(resQ);
                 }
+                ResultFile = ResultFile.Distinct().ToList();
+                return View(ResultFile);
+            }
+        }
+        public FileResult Download(int id)
+        {
+            using(var db = new MainDBContext())
+            {
+                var berkas = db.dataFile.First(x => x.Id == id);
+                berkas.terunduh += 1;
+                db.SaveChanges();
+                return File(berkas.file_path, System.Net.Mime.MediaTypeNames.Application.Octet, berkas.nama_file);
             }
         }
     }

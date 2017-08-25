@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="File">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,6 +14,7 @@
           <Property Name="nama_file" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="pengguna" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="terunduh" Type="int" />
+          <Property Name="waktu_terupload" Type="datetime" />
         </EntityType>
         <EntityType Name="pengguna">
           <Key>
@@ -44,35 +45,43 @@
             <End Role="File" EntitySet="File" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="File" EntityType="DatabaseModel.File" />
+          <EntitySet Name="pengguna" EntityType="DatabaseModel.pengguna" />
+          <AssociationSet Name="FK__File__pengguna__37A5467C" Association="DatabaseModel.FK__File__pengguna__37A5467C">
+            <End Role="pengguna" EntitySet="pengguna" />
+            <End Role="File" EntitySet="File" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="File">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="file_path" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nama_file" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="pengguna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="file_path" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="nama_file" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pengguna" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="terunduh" Type="Int32" />
-          <NavigationProperty Name="pengguna1" Relationship="Self.FK__File__pengguna__37A5467C" FromRole="File" ToRole="pengguna" />
+          <Property Name="waktu_terupload" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="pengguna1" Relationship="DatabaseModel.FK__File__pengguna__37A5467C" FromRole="File" ToRole="pengguna" />
         </EntityType>
         <EntityType Name="pengguna">
           <Key>
             <PropertyRef Name="username" />
           </Key>
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="File" Relationship="Self.FK__File__pengguna__37A5467C" FromRole="pengguna" ToRole="File" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nama" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="File" Relationship="DatabaseModel.FK__File__pengguna__37A5467C" FromRole="pengguna" ToRole="File" />
         </EntityType>
         <Association Name="FK__File__pengguna__37A5467C">
-          <End Role="pengguna" Type="Self.pengguna" Multiplicity="1" />
-          <End Role="File" Type="Self.File" Multiplicity="*" />
+          <End Type="DatabaseModel.pengguna" Role="pengguna" Multiplicity="1" />
+          <End Type="DatabaseModel.File" Role="File" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pengguna">
               <PropertyRef Name="username" />
@@ -82,14 +91,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="File" EntityType="Self.File" />
-          <EntitySet Name="pengguna" EntityType="Self.pengguna" />
-          <AssociationSet Name="FK__File__pengguna__37A5467C" Association="Self.FK__File__pengguna__37A5467C">
-            <End Role="pengguna" EntitySet="pengguna" />
-            <End Role="File" EntitySet="File" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -99,21 +100,22 @@
           <EntitySetMapping Name="File">
             <EntityTypeMapping TypeName="DatabaseModel.File">
               <MappingFragment StoreEntitySet="File">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="file_path" ColumnName="file_path" />
-                <ScalarProperty Name="nama_file" ColumnName="nama_file" />
-                <ScalarProperty Name="pengguna" ColumnName="pengguna" />
+                <ScalarProperty Name="waktu_terupload" ColumnName="waktu_terupload" />
                 <ScalarProperty Name="terunduh" ColumnName="terunduh" />
+                <ScalarProperty Name="pengguna" ColumnName="pengguna" />
+                <ScalarProperty Name="nama_file" ColumnName="nama_file" />
+                <ScalarProperty Name="file_path" ColumnName="file_path" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pengguna">
             <EntityTypeMapping TypeName="DatabaseModel.pengguna">
               <MappingFragment StoreEntitySet="pengguna">
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="nama" ColumnName="nama" />
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nama" ColumnName="nama" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -133,7 +135,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

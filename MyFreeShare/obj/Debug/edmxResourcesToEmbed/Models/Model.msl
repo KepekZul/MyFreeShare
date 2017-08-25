@@ -4,21 +4,22 @@
     <EntitySetMapping Name="File">
       <EntityTypeMapping TypeName="DatabaseModel.File">
         <MappingFragment StoreEntitySet="File">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="file_path" ColumnName="file_path" />
-          <ScalarProperty Name="nama_file" ColumnName="nama_file" />
-          <ScalarProperty Name="pengguna" ColumnName="pengguna" />
+          <ScalarProperty Name="waktu_terupload" ColumnName="waktu_terupload" />
           <ScalarProperty Name="terunduh" ColumnName="terunduh" />
+          <ScalarProperty Name="pengguna" ColumnName="pengguna" />
+          <ScalarProperty Name="nama_file" ColumnName="nama_file" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="pengguna">
       <EntityTypeMapping TypeName="DatabaseModel.pengguna">
         <MappingFragment StoreEntitySet="pengguna">
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="nama" ColumnName="nama" />
-          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="username" ColumnName="username" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

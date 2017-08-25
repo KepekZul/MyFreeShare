@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MyFreeShare.Models.File>
+
+@{
+    ViewBag.Title = "Cari";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Hasil Cari</h2>
+@RenderPage("~/Views/Shared/searchbar.cshtml")
+<div class="row">
+    <div class="box">
+        <div class="box-body">
+            <table class="table table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th>Nama File</th>
+                    <th>Waktu Diupload</th>
+                    <th>Terunduh</th>
+                    <th>Download</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in Model)
+                    {
+                        <tr>
+                            <td>@x.nama_file</td>
+                            <td>@x.waktu_terupload</td>
+                            <td>@x.terunduh</td>
+                            <td><a class="btn btn-block btn-default" href="@Url.Action("Download","File")/@x.Id">Download</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
