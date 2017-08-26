@@ -249,6 +249,7 @@
     <Content Include="Views\Home\Upload.cshtml" />
     <Content Include="Views\File\Cari.cshtml" />
     <Content Include="Views\Shared\searchbar.cshtml" />
+    <Content Include="Views\Authentication\UpdatePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,7 +11,12 @@ namespace MyFreeShare.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            using (var db = new MainDBContext())
+            {
+                string username = Session["username"].ToString();
+                var userItems = db.dataFile.Where(x => x.pengguna == username ).ToList();
+                return View(userItems);
+            }
         }
         [HttpGet]
         public ActionResult Upload()

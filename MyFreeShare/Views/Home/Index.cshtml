@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<MyFreeShare.Models.File>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,14 +27,28 @@
                     <div class="box-title">
                         Your Uploaded File
                     </div>
+                    @TempData["pesan"]
                 </div>
                 <div class="box-body">
-                    <table>
+                    <table class="table table-condensed table-bordered">
                         <thead>
-
+                            <tr>
+                                <th>Nama File</th>
+                                <th>Waktu Upload</th>
+                                <th>Jumlah Terunduh</th>
+                                <th>Hapus</th>
+                            </tr>
                         </thead>
                         <tbody>
-
+                            @foreach (var data in Model)
+                            {
+                                <tr>
+                                    <td>@data.nama_file</td>
+                                    <td>@data.waktu_terupload</td>
+                                    <td>@data.terunduh</td>
+                                    <td><form action="@Url.Action("Hapus","File")/@data.Id"><input type="submit" class="btn btn-danger" value="Hapus"></form></td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

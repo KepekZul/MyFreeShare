@@ -53,5 +53,24 @@ namespace MyFreeShare.Controllers
                 return File(berkas.file_path, System.Net.Mime.MediaTypeNames.Application.Octet, berkas.nama_file);
             }
         }
+        public ActionResult Hapus(int id)
+        {
+            using(var db = new MainDBContext())
+            {
+                var file = db.dataFile.First(x => x.Id == id);
+                try
+                {
+                    System.IO.File.Delete(file.file_path);
+                    db.dataFile.Remove(file);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+                catch
+                {
+                    TempData["pesan"] = "error terjadi, coba lagi";
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+        }
     }
 }
