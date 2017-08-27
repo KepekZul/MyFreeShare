@@ -1,4 +1,3 @@
-E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\obj\Debug\MyFreeShare.csprojResolveAssemblyReference.cache
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\roslyn\csc.exe
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -18,8 +17,13 @@ E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Antlr3.R
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\EntityFramework.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\EntityFramework.SqlServer.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Owin.dll
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Owin.Security.Cookies.dll
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Owin.Security.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Web.Infrastructure.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Newtonsoft.Json.dll
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Owin.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\System.Web.Helpers.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\System.Web.Mvc.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\System.Web.Optimization.dll
@@ -32,6 +36,10 @@ E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Antlr3.R
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\EntityFramework.xml
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\EntityFramework.SqlServer.xml
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Owin.xml
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Owin.Security.xml
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Microsoft.Owin.Security.Cookies.xml
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\Newtonsoft.Json.xml
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\System.Web.Optimization.xml
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\System.Web.Razor.xml
@@ -42,3 +50,4 @@ E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\System.W
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\bin\System.Web.Mvc.xml
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\obj\Debug\MyFreeShare.dll
 E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\obj\Debug\MyFreeShare.pdb
+E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\obj\Debug\MyFreeShare.csprojResolveAssemblyReference.cache

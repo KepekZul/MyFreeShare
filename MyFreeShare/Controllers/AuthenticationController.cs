@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +10,7 @@ namespace MyFreeShare.Controllers
 {
     public class HashString
     {
-        public static UInt64 hash(string input)
+        public static string hash(string input)
         {
             UInt64 hashVal = 12345678912345678;
             for(int i=0; i<input.Length; i++)
@@ -17,17 +18,19 @@ namespace MyFreeShare.Controllers
                 hashVal += input[i];
                 hashVal*= 12345678912345678;
             }
-            return hashVal;
+            return hashVal.ToString();
         }
     }
     public class AuthenticationController : Controller
     {
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(pengguna data)
         {
@@ -37,8 +40,17 @@ namespace MyFreeShare.Controllers
                 {
                     var dataUser = db.dataPengguna.First(x => x.username == data.username);
                     string passwordDB = dataUser.password;
-                    if (data.password == passwordDB)
+                    if (HashString.hash(data.password) == passwordDB)
                     {
+                        var identity = new ClaimsIdentity(new[]
+                        {
+                            new Claim("username", dataUser.username),
+                            new Claim("email", dataUser.email)
+                        },
+                        "ApplicationCookie");
+                        var ctx = Request.GetOwinContext();
+                        var authmanager = ctx.Authentication;
+                        authmanager.SignIn(identity);
                         Session["username"] = dataUser.username;
                         return RedirectToAction("Index", "Home");
                     }
@@ -54,11 +66,14 @@ namespace MyFreeShare.Controllers
             }
             return View();
         }
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult SignUp()
         {
             return View();
         }
+
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult SignUp(pengguna data)
         {
@@ -66,10 +81,10 @@ namespace MyFreeShare.Controllers
             {
                 if(!db.dataPengguna.Where(x=>x.username==data.username || x.email == data.email).Any())
                 {
+                    data.password = HashString.hash(data.password);
                     db.dataPengguna.Add(data);
                     db.SaveChanges();
-                    Session["username"] = data.username;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Authentication");
                 }
                 else
                 {
@@ -78,8 +93,12 @@ namespace MyFreeShare.Controllers
                 }
             }
         }
+        [AllowAnonymous]
         public ActionResult Logout()
         {
+            var ctx = Request.GetOwinContext();
+            var authmanager = ctx.Authentication;
+            authmanager.SignOut("ApplicationCookie");
             Session.Clear();
             return RedirectToAction("Login", "Authentication");
         }
@@ -103,7 +122,7 @@ namespace MyFreeShare.Controllers
                 }
                 else
                 {
-                    TempData["pesan"] = "password ama salah";
+                    TempData["pesan"] = "password lama salah";
                     return RedirectToAction("UpdatePassword", "Authentication");
                 }
             }
