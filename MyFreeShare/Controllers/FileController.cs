@@ -11,20 +11,21 @@ namespace MyFreeShare.Controllers
     public class FileController : Controller
     {
         // GET: File
-        [HttpGet]
-        public ActionResult Upload()
-        {
-            return View();
-        }
         [HttpPost]
-        public ActionResult Upload(HttpPostedFileBase file)
+        public ActionResult Upload(IEnumerable<HttpPostedFileBase> files)
         {
-            var filename = Path.GetFileName(file.FileName);
-            var path = Path.Combine(Server.MapPath("~/App_Data/Uploads"), filename);
-            file.SaveAs(path);
-            var db = new MainDBContext();
-            db.dataFile.Add(new Models.File { nama_file = filename, file_path = path, pengguna = Session["username"].ToString(), waktu_terupload=DateTime.Now, terunduh=0 });
-            db.SaveChanges();
+            using (var db = new MainDBContext())
+            {
+                string publik = (Request.Form["publik"] == null) ? "0" : "1";
+                foreach (var file in files)
+                {
+                    var filename = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/Uploads"),Guid.NewGuid().ToString()+Path.GetExtension(filename));
+                    file.SaveAs(path);
+                    db.dataFile.Add(new Models.File { nama_file = filename, file_path = path, pengguna = Session["username"].ToString(), waktu_terupload = DateTime.Now, terunduh = 0, public_file=publik });
+                }
+                db.SaveChanges();
+            }
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
@@ -36,7 +37,7 @@ namespace MyFreeShare.Controllers
                 string[] query = param["query"].Split(' ');
                 foreach (var q in query)
                 {
-                    var resQ = db.dataFile.Where(x => x.nama_file.Contains(q)).ToList();
+                    var resQ = db.dataFile.Where(x => x.nama_file.Contains(q) && x.public_file=="1").ToList();
                     ResultFile.AddRange(resQ);
                 }
                 ResultFile = ResultFile.Distinct().ToList();

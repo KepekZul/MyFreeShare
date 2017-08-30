@@ -9,8 +9,6 @@
             <div class="box-header">
                 <table>
                     <tr><td><span class="navbar-brand">@Session["username"]</span></td></tr>
-                    <tr><td><span class="text-blue">Number of file uploaded</span></td></tr>
-                    <tr><td><span class="text-blue">Join Date</span></td></tr>
                     <tr><td><span class="text-blue"><a href="@Url.Action("Upload","Home")">Upload New File</a></span></td></tr>
                     <tr><td><span class="text-blue"><a href="@Url.Action("Logout","Authentication")">Log Out</a></span></td></tr>
                     <tr><td><span class="text-blue"><a href="@Url.Action("UpdatePassword","Authentication")">Change Password</a></span></td></tr>
@@ -36,6 +34,7 @@
                                 <th>Nama File</th>
                                 <th>Waktu Upload</th>
                                 <th>Jumlah Terunduh</th>
+                                <th>Download</th>
                                 <th>Hapus</th>
                             </tr>
                         </thead>
@@ -46,6 +45,7 @@
                                     <td>@data.nama_file</td>
                                     <td>@data.waktu_terupload</td>
                                     <td>@data.terunduh</td>
+                                    <td><form action="@Url.Action("Download","File")/@data.Id"><input type="submit" class="btn btn-default" value="Download"></form></td>
                                     <td><form action="@Url.Action("Hapus","File")/@data.Id"><input type="submit" class="btn btn-danger" value="Hapus"></form></td>
                                 </tr>
                             }

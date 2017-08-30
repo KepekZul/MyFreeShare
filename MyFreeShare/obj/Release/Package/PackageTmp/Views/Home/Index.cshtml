@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MyFreeShare.Models.File>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-3">
+        <div class="box">
+            <div class="box-header">
+                <table>
+                    <tr><td><span class="navbar-brand">@Session["username"]</span></td></tr>
+                    <tr><td><span class="text-blue">Number of file uploaded</span></td></tr>
+                    <tr><td><span class="text-blue">Join Date</span></td></tr>
+                    <tr><td><span class="text-blue"><a href="@Url.Action("Upload","Home")">Upload New File</a></span></td></tr>
+                    <tr><td><span class="text-blue"><a href="@Url.Action("Logout","Authentication")">Log Out</a></span></td></tr>
+                    <tr><td><span class="text-blue"><a href="@Url.Action("UpdatePassword","Authentication")">Change Password</a></span></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        @* search bar goes here *@
+        @RenderPage("~/Views/Shared/searchbar.cshtml")
+        <div class="row">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-title">
+                        Your Uploaded File
+                    </div>
+                    @TempData["pesan"]
+                </div>
+                <div class="box-body">
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nama File</th>
+                                <th>Waktu Upload</th>
+                                <th>Jumlah Terunduh</th>
+                                <th>Hapus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var data in Model)
+                            {
+                                <tr>
+                                    <td>@data.nama_file</td>
+                                    <td>@data.waktu_terupload</td>
+                                    <td>@data.terunduh</td>
+                                    <td><form action="@Url.Action("Hapus","File")/@data.Id"><input type="submit" class="btn btn-danger" value="Hapus"></form></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

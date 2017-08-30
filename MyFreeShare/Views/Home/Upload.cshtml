@@ -14,7 +14,10 @@
         @using (Html.BeginForm("Upload", "File", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <label for="file">Filename:</label>
-            <input type="file" name="file" id="file"/>
+            <input type="file" multiple name="files" id="file"/>
+            <label>Set as public file</label>
+            <input type="checkbox" name="publik" />
+            <br />
             <input type="submit" />
         }
     </div>

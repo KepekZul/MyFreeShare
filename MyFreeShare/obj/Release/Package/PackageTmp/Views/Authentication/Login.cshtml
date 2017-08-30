@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Log In</h2>
+
+<div class="box">
+    <div class="box-header">
+        <div class="box-title">Log In Form</div>
+    </div>
+    <div class="login-box-body">
+        @TempData["pesan"]
+        <table>
+            @using (Html.BeginForm("Login","Authentication", FormMethod.Post))
+            {
+                <tr><td>Username<input type="text" name="username" class="form-control" required/></td></tr>
+                <tr><td>Password<input type="password" name="password" class="form-control" required/></td></tr>
+                <tr><td><input class="btn btn-default form-control" type="submit" value="Log In" /></td></tr>
+            }
+        </table>
+    </div>
+</div>
+

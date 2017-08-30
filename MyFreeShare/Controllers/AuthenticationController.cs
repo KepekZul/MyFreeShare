@@ -34,34 +34,37 @@ namespace MyFreeShare.Controllers
         [HttpPost]
         public ActionResult Login(pengguna data)
         {
-            using(var db = new MainDBContext())
+            if (ModelState.IsValid)
             {
-                if (db.dataPengguna.Where(x => x.username == data.username).Any())
+                using (var db = new MainDBContext())
                 {
-                    var dataUser = db.dataPengguna.First(x => x.username == data.username);
-                    string passwordDB = dataUser.password;
-                    if (HashString.hash(data.password) == passwordDB)
+                    if (db.dataPengguna.Where(x => x.username == data.username).Any())
                     {
-                        var identity = new ClaimsIdentity(new[]
+                        var dataUser = db.dataPengguna.First(x => x.username == data.username);
+                        string passwordDB = dataUser.password;
+                        if (HashString.hash(data.password) == passwordDB)
                         {
+                            var identity = new ClaimsIdentity(new[]
+                            {
                             new Claim("username", dataUser.username),
                             new Claim("email", dataUser.email)
                         },
-                        "ApplicationCookie");
-                        var ctx = Request.GetOwinContext();
-                        var authmanager = ctx.Authentication;
-                        authmanager.SignIn(identity);
-                        Session["username"] = dataUser.username;
-                        return RedirectToAction("Index", "Home");
+                            "ApplicationCookie");
+                            var ctx = Request.GetOwinContext();
+                            var authmanager = ctx.Authentication;
+                            authmanager.SignIn(identity);
+                            Session["username"] = dataUser.username;
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            TempData["pesan"] = "password salah";
+                        }
                     }
                     else
                     {
-                        TempData["pesan"] = "password salah";
+                        TempData["pesan"] = "username tidak terdaftar";
                     }
-                }
-                else
-                {
-                    TempData["pesan"] = "username tidak terdaftar";
                 }
             }
             return View();
@@ -77,6 +80,10 @@ namespace MyFreeShare.Controllers
         [HttpPost]
         public ActionResult SignUp(pengguna data)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             using(var db= new MainDBContext())
             {
                 if(!db.dataPengguna.Where(x=>x.username==data.username || x.email == data.email).Any())

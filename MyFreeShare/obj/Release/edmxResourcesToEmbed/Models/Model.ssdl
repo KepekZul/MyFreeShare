@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="file_path" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="nama_file" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="pengguna" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="terunduh" Type="int" />
+    <Property Name="waktu_terupload" Type="datetime" />
+  </EntityType>
+  <EntityType Name="pengguna">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nama" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__File__pengguna__37A5467C">
+    <End Role="pengguna" Type="Self.pengguna" Multiplicity="1" />
+    <End Role="File" Type="Self.File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pengguna">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="File">
+        <PropertyRef Name="pengguna" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pengguna" EntityType="Self.pengguna" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__File__pengguna__37A5467C" Association="Self.FK__File__pengguna__37A5467C">
+      <End Role="pengguna" EntitySet="pengguna" />
+      <End Role="File" EntitySet="File" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

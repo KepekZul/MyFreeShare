@@ -15,6 +15,7 @@
           <Property Name="pengguna" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="terunduh" Type="int" />
           <Property Name="waktu_terupload" Type="datetime" />
+          <Property Name="public_file" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="pengguna">
           <Key>
@@ -67,6 +68,7 @@
           <Property Name="pengguna" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="terunduh" Type="Int32" />
           <Property Name="waktu_terupload" Type="DateTime" Precision="3" />
+          <Property Name="public_file" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="pengguna1" Relationship="DatabaseModel.FK__File__pengguna__37A5467C" FromRole="File" ToRole="pengguna" />
         </EntityType>
         <EntityType Name="pengguna">
@@ -100,6 +102,7 @@
           <EntitySetMapping Name="File">
             <EntityTypeMapping TypeName="DatabaseModel.File">
               <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="public_file" ColumnName="public_file" />
                 <ScalarProperty Name="waktu_terupload" ColumnName="waktu_terupload" />
                 <ScalarProperty Name="terunduh" ColumnName="terunduh" />
                 <ScalarProperty Name="pengguna" ColumnName="pengguna" />

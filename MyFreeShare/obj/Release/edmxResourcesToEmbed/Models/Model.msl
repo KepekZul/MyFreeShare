@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="File">
+      <EntityTypeMapping TypeName="DatabaseModel.File">
+        <MappingFragment StoreEntitySet="File">
+          <ScalarProperty Name="waktu_terupload" ColumnName="waktu_terupload" />
+          <ScalarProperty Name="terunduh" ColumnName="terunduh" />
+          <ScalarProperty Name="pengguna" ColumnName="pengguna" />
+          <ScalarProperty Name="nama_file" ColumnName="nama_file" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pengguna">
+      <EntityTypeMapping TypeName="DatabaseModel.pengguna">
+        <MappingFragment StoreEntitySet="pengguna">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

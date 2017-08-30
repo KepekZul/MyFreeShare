@@ -3,7 +3,7 @@
         <div class="box-header">
             @using (Html.BeginForm("Cari", "File"))
             {
-                <input class="form-control" type="search" name="query" style="min-width:100%;" /><input type="submit" class="btn btn-success" value="search" />
+                <input class="form-control" type="search" name="query" style="min-width:100%;" required/><input type="submit" class="btn btn-success" value="search" />
             }
         </div>
     </div>

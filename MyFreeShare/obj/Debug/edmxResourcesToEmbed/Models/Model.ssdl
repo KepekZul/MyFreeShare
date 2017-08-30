@@ -10,6 +10,7 @@
     <Property Name="pengguna" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="terunduh" Type="int" />
     <Property Name="waktu_terupload" Type="datetime" />
+    <Property Name="public_file" Type="varchar" MaxLength="1" />
   </EntityType>
   <EntityType Name="pengguna">
     <Key>

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="File">
       <EntityTypeMapping TypeName="DatabaseModel.File">
         <MappingFragment StoreEntitySet="File">
+          <ScalarProperty Name="public_file" ColumnName="public_file" />
           <ScalarProperty Name="waktu_terupload" ColumnName="waktu_terupload" />
           <ScalarProperty Name="terunduh" ColumnName="terunduh" />
           <ScalarProperty Name="pengguna" ColumnName="pengguna" />

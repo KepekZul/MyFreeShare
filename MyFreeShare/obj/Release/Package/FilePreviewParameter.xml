@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/kevin.xtremax.com" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^E:\\My\ Documents\\Visual\ Studio\ 2015\\Projects\\MyFreeShare\\MyFreeShare\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^E:\\My\ Documents\\Visual\ Studio\ 2015\\Projects\\MyFreeShare\\MyFreeShare\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Add write permission to App_Data Folder" description="Add write permission to App_Data folder" value="Default Web Site/kevin.xtremax.com/App_Data" tags="Hidden">
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^E:\\My\ Documents\\Visual\ Studio\ 2015\\Projects\\MyFreeShare\\MyFreeShare\\obj\\Release\\Package\\PackageTmp\\App_Data$" />
+  </parameter>
+  <parameter name="DatabaseEntities-Web.config Connection String" description="" value="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Database.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="E:\\My\ Documents\\Visual\ Studio\ 2015\\Projects\\MyFreeShare\\MyFreeShare\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DatabaseEntities']/@connectionString" />
+  </parameter>
+  <parameter name="MyFreeShare.Models.Entities-Web.config Connection String" description="" value="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=&quot;E:\My Documents\Visual Studio 2015\Projects\MyFreeShare\MyFreeShare\App_Data\Database.mdf&quot;;Integrated Security=True;Connect Timeout=30" tags="">
+    <parameterEntry kind="XmlFile" scope="E:\\My\ Documents\\Visual\ Studio\ 2015\\Projects\\MyFreeShare\\MyFreeShare\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MyFreeShare.Models.Entities']/@connectionString" />
+  </parameter>
+</parameters>

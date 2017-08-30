@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DatabaseEntities-Web.config Connection String" description="DatabaseEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Database.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\My\ Documents\\Visual\ Studio\ 2015\\Projects\\MyFreeShare\\MyFreeShare\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DatabaseEntities']/@connectionString" />
+  </parameter>
+  <parameter name="MyFreeShare.Models.Entities-Web.config Connection String" description="MyFreeShare.Models.Entities Connection String used in web.config by the application to access the database." defaultValue="MyFreeShare.Models.Entities_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\My\ Documents\\Visual\ Studio\ 2015\\Projects\\MyFreeShare\\MyFreeShare\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MyFreeShare.Models.Entities']/@connectionString" />
+  </parameter>
+</parameters>
